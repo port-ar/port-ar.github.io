@@ -1,0 +1,68 @@
+---
+import BlogCard from '@/components/BlogCard.astro'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import { buttonVariants } from '@/components/ui/button'
+import { SITE } from '@/consts'
+import Layout from '@/layouts/Layout.astro'
+import { getRecentPosts } from '@/lib/data-utils'
+
+const blog = await getRecentPosts(SITE.featuredPostCount)
+---
+
+<Layout class="max-w-7xl ">
+  <PageHead slot="head" title="Home" />
+  <section class="full-width-bg-section bg-black/15 dark:bg-black/0 bg-center bg-cover relative" style={{backgroundImage: `url('src/content/homepage-bg.png')`}}>
+    <section class="max-w-7xl mx-auto flex flex-col space-y-1.5 p-6 py-36 px-40">
+      <div class="flex flex-col space-y-1.5">
+        <h3 class="text-primary text-7xl leading-none font-medium" style="letter-spacing:1px">Alaina R. Portoghese</h3>
+        <p class="text-primary text-xl">
+          Minneapolis, MN &nbsp;|&nbsp; University of Minnesota &nbsp;|&nbsp; MGIS Student
+        </p>
+      </div>
+      <div class="pt-2">
+        <p class="mb-2 text-3xl font-light">
+          environmental science, cartography, graphic design, GIS communication, sustainable planning.
+        </p>
+      </div>
+      <div class="flex py-2">
+        <Link
+          href="/about"
+          class={buttonVariants({ variant: 'negative' }) + ' group'}
+        >
+          About Me
+        </Link>
+        <p>&emsp;</p>
+        <Link
+          href="/experience"
+          class={buttonVariants({ variant: 'destructive' }) + ' group'}
+        >
+          Experience & Resume
+        </Link>
+      </div>
+    </section>
+  </section>
+  <section class="py-15">
+    <h2 class="text-3xl font-medium">latest sample works</h2>
+    <ul class="flex flex-col gap-y-4 py-6">
+      {
+        blog.map((post) => (
+          <li>
+            <BlogCard entry={post} />
+          </li>
+        ))
+      }
+    </ul>
+    <div class="flex justify-center">
+      <Link
+        href="/blog"
+        class={buttonVariants({ variant: 'outline' }) + ' group'}
+      >
+        See all sample works <span
+          class="ml-1.5 transition-transform group-hover:translate-x-1"
+          >&rarr;</span
+        >
+      </Link>
+    </div>
+  </section>
+</Layout>

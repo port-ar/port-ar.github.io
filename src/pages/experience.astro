@@ -1,0 +1,40 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import Layout from '@/layouts/Layout.astro'
+import { buttonVariants } from '@/components/ui/button'
+---
+
+<Layout class="max-w-7xl ">
+  <PageHead slot="head" title="Experience" />
+  <Breadcrumbs items={[{ label: 'Experience', icon: 'lucide:pen' }]} />
+  <div class="flex py-1 text-6xl" style="margin-top: 10px;"
+  >experience
+  </div>
+  <section>
+    <div class="min-w-full">
+      <div class="prose mb-8">
+        <p class="mt-0"></p>
+          Between job positions, a MN Greencorps term, undergraduate studies, and graduate studies, 
+          I have been fortunate to have been able to learn skills and gain knowledge for many different subject areas and 
+          focuses.<br>
+          <br>
+          I have done field work for my bachelor's degree and for MN Greencorps, graphic design for the Riley Purgatory Bluff Creek Watershed District (and on my own time), 
+          learned about environmental science and sustainability through it all, and am now learning more about coding and development
+          at the University of Minnesota.<br>
+          <br>
+          To read more about specifics of the positions I have held and the experience I have gained, click the button below to view my resume. Thank you! 
+        </p>
+      </div>
+      <div class="flex py-2">
+        <Link
+            href="src/content/Portoghese_Resume2025.pdf"
+            class={buttonVariants({ variant: 'destructive' }) + ' group'}
+        >
+            Resume
+        </Link>
+    </div>
+    </div>
+  </section>
+</Layout>

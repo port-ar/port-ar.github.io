@@ -1,0 +1,30 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import PageHead from '@/components/PageHead.astro'
+import Layout from '@/layouts/Layout.astro'
+
+---
+
+<Layout class="max-w-7xl ">
+  <PageHead slot="head" title="About" />
+  <Breadcrumbs items={[{ label: 'About', icon: 'lucide:info' }]} />
+  <div class="flex py-1 text-6xl" style="margin-top: 10px;"
+  >about
+  </div>
+  <section>
+    <div class="min-w-full">
+      <div class="prose mb-8">
+        <p class="mt-0 text-2xl">
+          Hello! My name is Alaina.<br>
+        </p>
+        <p class="mt-0"></p>
+          I am from Saint Paul, earned by bachelor's degree in Environmental Science in Denver, and am now back in the Twin Cities, based in Minneapolis.
+          I worked at the Riley Purgatory Bluff Creek Watershed District in the southwest suburbs of the Twin Cities metro area for several years, 
+          and I am currently in my first year of the University of Minnesota's MGIS program, during which I am working at the Polar Geospatial Center as a Geospatial Support Assistant.<br>
+          <br>
+          My interests include cartography, environmental GIS, sustainable urban areas, climate resilience, and GIS as a communication tool.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

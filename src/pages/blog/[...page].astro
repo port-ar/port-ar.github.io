@@ -1,0 +1,86 @@
+---
+import BlogCard from '@/components/BlogCard.astro'
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import PageHead from '@/components/PageHead.astro'
+import PaginationComponent from '@/components/ui/pagination'
+import { SITE } from '@/consts'
+import Layout from '@/layouts/Layout.astro'
+import { getAllPosts, groupPostsByYear } from '@/lib/data-utils'
+import type { PaginateFunction } from 'astro'
+import Link from '@/components/Link.astro'
+import { getSortedTags } from '@/lib/data-utils'
+import { badgeVariants } from '@/components/ui/badge'
+import { Icon } from 'astro-icon/components'
+
+
+
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction
+}) {
+  const allPosts = await getAllPosts()
+  return paginate(allPosts, { pageSize: SITE.postsPerPage })
+}
+
+const { page } = Astro.props
+
+const postsByYear = groupPostsByYear(page.data)
+const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
+const sortedTags = await getSortedTags()
+
+---
+
+<Layout class="max-w-7xl ">
+  <PageHead slot="head" title="Blog" />
+  <Breadcrumbs
+    items={[
+      { label: 'Sample Works', href: '/blog', icon: 'lucide:library-big' },
+      { label: `Page ${page.currentPage}`, icon: 'lucide:book-open' },
+    ]}
+  />
+  <div class="flex py-1 text-6xl" style="margin-top: 10px;"
+  >sample works
+  </div>
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-wrap gap-2">
+      {
+        sortedTags.map(({ tag, count }) => (
+          <Link
+            href={`/tags/${tag}`}
+            class={badgeVariants({ variant: 'muted' })}
+          >
+            <Icon name="lucide:hash" class="size-3" />
+            {tag}
+            <span class="text-muted-foreground ml-1.5">({count})</span>
+          </Link>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="flex min-h-[calc(100vh-18rem)] flex-col gap-y-8" style="margin-top: 22px;"> 
+    {
+      years.map((year) => (
+        <section class="flex flex-col gap-y-4"> 
+          <div class="font-regular text-3xl text-muted-foreground/30" style="letter-spacing:10px">{year}</div>
+          <ul class="flex flex-col gap-4">
+            {postsByYear[year].map((post) => (
+              <li>
+                <BlogCard entry={post} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+
+  <PaginationComponent
+    currentPage={page.currentPage}
+    totalPages={page.lastPage}
+    baseUrl="/blog/"
+    client:load
+  />
+</Layout>

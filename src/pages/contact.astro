@@ -1,0 +1,40 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import Layout from '@/layouts/Layout.astro'
+import { buttonVariants } from '@/components/ui/button'
+import { SOCIAL_LINKS } from '@/consts'
+---
+
+<Layout class="max-w-7xl ">
+  <PageHead slot="head" title="Contact" />
+  <Breadcrumbs items={[{ label: 'Contact', icon: 'lucide:mail' }]} />
+  <div class="flex py-1 text-6xl" style="margin-top: 10px;"
+  >contact me
+  </div>
+  <section>
+    <div class="min-w-full">
+        <div class="prose mb-8">
+            <p class="mt-0"></p>
+            The best way to contact me is via email. However, you are welcome to reach out on LinkedIn as well!
+            </p>
+        </div>
+        <div class="flex py-2">
+            <Link
+                href="mailto:porto023@umn.edu"
+                class={buttonVariants({ variant: 'destructive' }) + ' group'}
+            >
+                Email Me
+            </Link>
+            <p>&emsp;</p>
+            <Link
+                href="https://www.linkedin.com/in/alaina-portoghese/"
+                class={buttonVariants({ variant: 'destructive' }) + ' group'}
+            >
+                LinkedIn
+            </Link>
+        </div>
+    </div>
+  </section>
+</Layout>
