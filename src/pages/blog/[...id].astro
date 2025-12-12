@@ -6,7 +6,7 @@ import PostNavigation from '@/components/PostNavigation.astro'
 import SubpostsHeader from '@/components/SubpostsHeader.astro'
 import SubpostsSidebar from '@/components/SubpostsSidebar.astro'
 import TOCHeader from '@/components/TOCHeader.astro'
-import TOCSidebar from '@/components/TOCSidebar.astro'
+// import TOCSidebar from '@/components/TOCSidebar.astro'
 import { badgeVariants } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Layout from '@/layouts/Layout.astro'
@@ -58,7 +58,7 @@ const combinedReadingTime =
 const tocSections = await getTOCSections(currentPostId)
 ---
 
-<Layout>
+<Layout class="max-w-7xl ">
   <PostHead slot="head" post={post} />
   {
     (hasChildPosts || isCurrentSubpost) && (
@@ -78,7 +78,7 @@ const tocSections = await getTOCSections(currentPostId)
   }
 
   <section
-    class="grid grid-cols-[minmax(0px,1fr)_min(calc(var(--breakpoint-md)-2rem),100%)_minmax(0px,1fr)] gap-y-6"
+    class="grid gap-y-6"
   >
     <div class="col-start-2">
       <Breadcrumbs
@@ -107,19 +107,6 @@ const tocSections = await getTOCSections(currentPostId)
         ]}
       />
     </div>
-
-    {
-      post.data.image && (
-        <Image
-          src={post.data.image}
-          alt={post.data.title}
-          width={1200}
-          height={630}
-          class="col-span-full mx-auto w-full max-w-8xl object-cover "
-        />
-      )
-    }
-
     <section class="col-start-2 flex flex-col gap-y-6 text-center">
       <div class="flex flex-col">
         <h1
@@ -163,12 +150,6 @@ const tocSections = await getTOCSections(currentPostId)
         </div>
       </div>
     </section>
-<!-- !!!!!!!!!!!!!!!!!! FIX THIS SECTION !!!!!!!!!!!!!!!! -->
-    <!-- {
-      tocSections.length > 0 && (
-        <TOCSidebar sections={tocSections} currentPostId={currentPostId} />
-      )
-    } -->
 
     <article class="prose col-start-2 max-w-none">
       <Content />

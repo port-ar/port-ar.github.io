@@ -20,10 +20,6 @@ export const NAV_LINKS: SocialLink[] = [
     href: '/about',
     label: 'about',
   },
-  // {
-  //   href: '/experience',
-  //   label: 'experience',
-  // },
   {
     href: '/blog',
     label: 'sample works',
@@ -35,14 +31,6 @@ export const NAV_LINKS: SocialLink[] = [
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  // {
-  //   href: 'https://github.com/jktrn',
-  //   label: 'GitHub',
-  // },
-  // {
-  //   href: 'https://twitter.com/enscry',
-  //   label: 'Twitter',
-  // },
   {
     href: 'https://www.linkedin.com/in/alaina-portoghese/',
     label: 'LinkedIn',
